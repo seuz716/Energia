@@ -9,6 +9,7 @@ const controladorCentrales = express.Router();
 /* Puntos de entrada a la Api.
 Get -> obtener todas las centrales electricas.
 Get -> Obtener una Central por Id.
+Get -> Obtener Centrales por Pais
 Get -> Obtener una Central por Nombre o descripcion.
 Post -> Crear una nueva Central.
 Put -> Actualizar Una Central.
@@ -30,6 +31,24 @@ controladorCentrales.get("/obtenerCentral/:id", async function (req, res) {
        " mensaje": "Estación Eléctrica",
        "data": central
     })
-} )
+} );
+
+controladorCentrales.get("/obtenerCentralPorNombre/:nombre", async function(req, res){
+   let nombre = req.params.nombre;
+   let central = await serviceCentrales.obtenerCentralPorNombre(nombre);
+   res.send({
+       "mensaje ": "Plantas Encontrada",
+       "data": central
+   });
+});
+
+controladorCentrales.get("/obtenercentralPorPais/:pais", async function (req, res) {
+   let pais = req.params.pais;
+   let central = await serviceCentrales.obtenerCentralPorPais(pais)
+   res.send({
+      "mensaje":"Estación Eléctrica",
+      "data" :central
+   })
+})
 
 module.exports = controladorCentrales;

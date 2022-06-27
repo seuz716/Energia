@@ -29,7 +29,7 @@ conexion.conectar()
 .then(function () {
     app.listen(port, function () {
         console.log("Api ejecutandose en el puerto: " + port );
-        console.log(conexion.obtenerConexion());
+       /*  console.log(conexion.obtenerConexion()); */
     }); 
 })
 .catch(function (error) {

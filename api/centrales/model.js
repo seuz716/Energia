@@ -18,10 +18,34 @@ function findOne(id) {
     .then(function (central) {
         return central;
     })
-    .catch(function (erro) {
+    .catch(function (error) {
         console.log(error);
     });
 };
 
+function CentralPorPaises(pais) {
+  const db = basedatos.obtenerConexion();
+  return db.collection("generacionElectrica").find({"country_long" : new RegExp(pais, "i")}).toArray()
+  .then(function (central) {
+    return central;
+})
+.catch(function (error) {
+    console.log(error);
+});
+};
+
+function obtenerPorNombre(nombre){
+  let db =  basedatos.obtenerConexion();
+   return db.collection("generacionElectrica").find({"name" : new RegExp(nombre, "i")}).toArray()
+  .then(function (central){
+      return central;
+  })
+  .catch(function (error){
+      console.log(error);
+  })
+};
+
 module.exports.findAll = findAll;
-module.exports.findOne = findOne
+module.exports.findOne = findOne;
+module.exports.CentralPorPaises = CentralPorPaises;
+module.exports.obtenerPorNombre = obtenerPorNombre;
