@@ -3,6 +3,7 @@
 recibe datos del servicio, Envia una respuesta al cliente */
 
 const express = require('express');
+const serviceCentrales = require('./service');
 const controladorCentrales = express.Router();
 
 /* Puntos de entrada a la Api.
@@ -13,9 +14,22 @@ Post -> Crear una nueva Central.
 Put -> Actualizar Una Central.
 Delete -> Eliminar una Central      */
 
-controladorCentrales.get("/obtenerCentrales", function (req, res) {
-    res.send({"mensaje" : "Listando Centrales"});
+controladorCentrales.get("/obtenerCentrales", async function (req, res) {
+   let centrales = await serviceCentrales.obtenerCentrales();
+   res.send({
+    "mensaje":"Listado de Centrales",
+    "data":centrales
+   });
     
 });
+
+controladorCentrales.get("/obtenerCentral/:id", async function (req, res) {
+    let id = req.params.id;
+    let central = await serviceCentrales.obtenerCentral(id);
+    res.send({
+       " mensaje": "Estación Eléctrica",
+       "data": central
+    })
+} )
 
 module.exports = controladorCentrales;
