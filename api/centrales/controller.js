@@ -49,6 +49,15 @@ controladorCentrales.get("/obtenercentralPorPais/:pais", async function (req, re
       "mensaje":"Estación Eléctrica",
       "data" :central
    })
+});
+
+controladorCentrales.get("/centralesMasGrandes", async function (req, res) {
+   
+   let central = await serviceCentrales.obtenerCentralPorTamano()
+   res.send({
+      "mensaje":"Estación Eléctrica",
+      "data" :central
+   }) 
 })
 
 module.exports = controladorCentrales;

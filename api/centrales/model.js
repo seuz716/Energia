@@ -45,7 +45,21 @@ function obtenerPorNombre(nombre){
   })
 };
 
+
+function obtenerPorTamano(){
+  let db =  basedatos.obtenerConexion();
+   return db.collection("generacionElectrica").find({"capacity_mw":{$gte:"900"}}).limit(20).sort({"capacity_mw":-1}).toArray()
+  .then(function (central){
+      return central;
+  })
+  .catch(function (error){
+      console.log(error);
+  })
+};
+
+
 module.exports.findAll = findAll;
 module.exports.findOne = findOne;
 module.exports.CentralPorPaises = CentralPorPaises;
 module.exports.obtenerPorNombre = obtenerPorNombre;
+module.exports.obtenerPorTamano = obtenerPorTamano;

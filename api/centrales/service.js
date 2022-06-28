@@ -24,7 +24,14 @@ async function obtenerCentralPorNombre(nombre){
     let central = await modelCentrales.obtenerPorNombre(nombre);
     return central; 
 };
+
+async function obtenerCentralPorTamano(){
+    let central = await modelCentrales.obtenerPorTamano();
+    return central; 
+};
+
 module.exports.obtenerCentrales = obtenerCentrales;
 module.exports.obtenerCentral = obtenerCentral;
 module.exports.obtenerCentralPorPais = obtenerCentralPorPais;
 module.exports.obtenerCentralPorNombre = obtenerCentralPorNombre;
+module.exports.obtenerCentralPorTamano = obtenerCentralPorTamano;
