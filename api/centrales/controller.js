@@ -82,5 +82,11 @@ controladorCentrales.put("/actualizarCentral/:id", async function(req, res) {
    res.send(resultado)
    });
 
+  controladorCentrales.delete("/eliminarCentral/:id", async function (req, res) {
+    let id = req.params.id;
+    let resultado = await serviceCentrales.eliminarCentral(id);
+    res.send(resultado)
+  }); 
+
 
 module.exports = controladorCentrales;

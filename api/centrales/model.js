@@ -101,6 +101,19 @@ function actualizarUna(id, datos){
   })
 };
 
+function eliminarUna(id) {
+  let db = basedatos.obtenerConexion();
+  return db.collection("generacionElectrica").deleteOne(
+    {"_id":objectId(id)})
+    .then(function (resultado){
+      console.log(resultado);
+      return resultado; 
+  })
+  .catch(function (error){
+      console.log(error);
+  })
+}
+
 module.exports.findAll=findAll;
 module.exports.findOne=findOne;
 module.exports.CentralPorPaises=CentralPorPaises;
@@ -108,3 +121,4 @@ module.exports.obtenerPorNombre=obtenerPorNombre;
 module.exports.obtenerPorTamano=obtenerPorTamano;
 module.exports.crearUno=crearUno
 module.exports.actualizarUna=actualizarUna;
+module.exports.eliminarUna=eliminarUna;
