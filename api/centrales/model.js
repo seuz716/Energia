@@ -75,50 +75,52 @@ function obtenerPorTamano() {
     });
 }
 
-function crearUno(datos){
-  let db =  basedatos.obtenerConexion();
-   return db.collection("generacionElectrica").insertOne(datos)
-  .then(function (resConsulta){
-      return resConsulta; 
-  })
-  .catch(function (error){
+function crearUno(datos) {
+  let db = basedatos.obtenerConexion();
+  return db
+    .collection("generacionElectrica")
+    .insertOne(datos)
+    .then(function (resConsulta) {
+      return resConsulta;
+    })
+    .catch(function (error) {
       console.log(error);
-  })
-};
+    });
+}
 
-function actualizarUna(id, datos){
-  let db =  basedatos.obtenerConexion();
-   return db.collection("generacionElectrica").updateOne(
-          {"_id": objectId(id)},
-          {"$set": datos}
-   )       
-  .then(function (resultado){
+function actualizarUna(id, datos) {
+  let db = basedatos.obtenerConexion();
+  return db
+    .collection("generacionElectrica")
+    .updateOne({ _id: objectId(id) }, { $set: datos })
+    .then(function (resultado) {
       console.log(resultado);
-      return resultado; 
-  })
-  .catch(function (error){
+      return resultado;
+    })
+    .catch(function (error) {
       console.log(error);
-  })
-};
+    });
+}
 
 function eliminarUna(id) {
   let db = basedatos.obtenerConexion();
-  return db.collection("generacionElectrica").deleteOne(
-    {"_id":objectId(id)})
-    .then(function (resultado){
+  return db
+    .collection("generacionElectrica")
+    .deleteOne({ _id: objectId(id) })
+    .then(function (resultado) {
       console.log(resultado);
-      return resultado; 
-  })
-  .catch(function (error){
+      return resultado;
+    })
+    .catch(function (error) {
       console.log(error);
-  })
+    });
 }
 
-module.exports.findAll=findAll;
-module.exports.findOne=findOne;
-module.exports.CentralPorPaises=CentralPorPaises;
-module.exports.obtenerPorNombre=obtenerPorNombre;
-module.exports.obtenerPorTamano=obtenerPorTamano;
-module.exports.crearUno=crearUno
-module.exports.actualizarUna=actualizarUna;
-module.exports.eliminarUna=eliminarUna;
+module.exports.findAll = findAll;
+module.exports.findOne = findOne;
+module.exports.CentralPorPaises = CentralPorPaises;
+module.exports.obtenerPorNombre = obtenerPorNombre;
+module.exports.obtenerPorTamano = obtenerPorTamano;
+module.exports.crearUno = crearUno;
+module.exports.actualizarUna = actualizarUna;
+module.exports.eliminarUna = eliminarUna;

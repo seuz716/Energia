@@ -7,28 +7,32 @@ y los manipula enviando y recibiendo los datos desde el model y dando respuesta 
 async function obtenerCentrales() {
   let centrales = await modelCentrales.findAll();
   return centrales;
-}
+};
 
 /* Obtiene un elemento por el _id de mongo */
 async function obtenerCentral(id) {
   let central = await modelCentrales.findOne(id);
   return central;
-}
+};
+
 /*Obtiene un elementos por Pais*/
 async function obtenerCentralPorPais(pais) {
   let centrale = await modelCentrales.CentralPorPaises(pais);
   return centrale;
-}
+};
+
 /* Obtiene elementos por nombre o parte de el*/
 async function obtenerCentralPorNombre(nombre) {
   let central = await modelCentrales.obtenerPorNombre(nombre);
   return central;
-}
+};
+
 /*Obtiene los 20 elementos con mayor variable, en este caso potencia*/
 async function obtenerCentralPorTamano() {
   let central = await modelCentrales.obtenerPorTamano();
   return central;
-}
+};
+
 /*Crea un nuevo elemento*/
 async function crearCentral(datos) {
   let resultado = {};
@@ -47,7 +51,7 @@ async function crearCentral(datos) {
     resultado.datos = "No hay datos";
   }
   return resultado;
-}
+};
 
 async function actualizarCentral(id, datos) {
   let resultado = {};
@@ -75,26 +79,24 @@ async function actualizarCentral(id, datos) {
     resultado.datos = id;
   }
   return resultado;
-}
+};
 
-async function eliminarCentral(id){
-    let resultado = {};
-    if (id && id.length == 24 && /^[0-9A-F]+$/i.test(id)){
-        let resultadoEliminar = await modelCentrales.eliminarUna(id); 
-                if        (resultadoEliminar  && resultadoEliminar.acknowledged){
-                          resultado.mensaje = "Planta eliminada correctamente";
-                          resultado.datos = resultadoEliminar;
-                    } 
-                else {
-                          resultado.mensaje = "Error al eliminar";
-                          resultado.datos = id;  
-                    }               
-             } 
-                else {
-                          resultado.mensaje = "ID invalido";
-                          resultado.datos = id;
-                     }
-     return resultado;
+async function eliminarCentral(id) {
+  let resultado = {};
+  if (id && id.length == 24 && /^[0-9A-F]+$/i.test(id)) {
+    let resultadoEliminar = await modelCentrales.eliminarUna(id);
+    if (resultadoEliminar && resultadoEliminar.acknowledged) {
+      resultado.mensaje = "Planta eliminada correctamente";
+      resultado.datos = resultadoEliminar;
+    } else {
+      resultado.mensaje = "Error al eliminar";
+      resultado.datos = id;
+    }
+  } else {
+    resultado.mensaje = "ID invalido";
+    resultado.datos = id;
+  }
+  return resultado;
 };
 
 module.exports.obtenerCentrales = obtenerCentrales;
