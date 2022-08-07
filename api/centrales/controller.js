@@ -34,22 +34,26 @@ controladorCentrales.get("/obtenerCentral/:id", async function (req, res) {
 });
 
 /*Obtiene un elementos por nombre  que se req a través de los parametros.nombre */
-controladorCentrales.get("/obtenerCentralPorNombre/:nombre", async function (req, res) {
+controladorCentrales.get(
+  "/obtenerCentralPorNombre/:nombre",
+  async function (req, res) {
     let nombre = req.params.nombre;
     let central = await serviceCentrales.obtenerCentralPorNombre(nombre);
     res.send({
       "mensaje ": "Plantas Encontrada",
-      data: central,
+      data: central
     });
   }
 );
 
 /*Obtiene un elementos por Pais  que se req a través de los parametros */
-controladorCentrales.get("/obtenercentralPorPais/:pais",async function (req, res) {
+controladorCentrales.get(
+  "/obtenercentralPorPais/:pais",
+  async function (req, res) {
     let pais = req.params.pais;
     let central = await serviceCentrales.obtenerCentralPorPais(pais);
     res.send({
-      "mensaje": "Estación Eléctrica",
+      mensaje: "Estación Eléctrica",
       data: central,
     });
   }
@@ -59,7 +63,7 @@ controladorCentrales.get("/obtenercentralPorPais/:pais",async function (req, res
 controladorCentrales.get("/centralesMasGrandes", async function (req, res) {
   let central = await serviceCentrales.obtenerCentralPorTamano();
   res.send({
-    "mensaje": "Estación Eléctrica",
+    mensaje: "Estación Eléctrica",
     data: central,
   });
 });
@@ -69,24 +73,23 @@ controladorCentrales.post("/crearCentral", async function (req, res) {
   let datos = req.body;
   let central = await serviceCentrales.crearCentral(datos);
   res.send({
-    "mensaje": central.mensaje,
-    "datos": central.datos,
+    mensaje: central.mensaje,
+    datos: central.datos,
   });
 });
 
 /*Actualiza un elemento por id*/
-controladorCentrales.put("/actualizarCentral/:id", async function(req, res) {
-   let id = req.params.id;
-   let datos = req.body;
-   let resultado = await serviceCentrales.actualizarCentral(id, datos);
-   res.send(resultado)
-   });
+controladorCentrales.put("/actualizarCentral/:id", async function (req, res) {
+  let id = req.params.id;
+  let datos = req.body;
+  let resultado = await serviceCentrales.actualizarCentral(id, datos);
+  res.send(resultado);
+});
 
-  controladorCentrales.delete("/eliminarCentral/:id", async function (req, res) {
-    let id = req.params.id;
-    let resultado = await serviceCentrales.eliminarCentral(id);
-    res.send(resultado)
-  }); 
-
+controladorCentrales.delete("/eliminarCentral/:id", async function (req, res) {
+  let id = req.params.id;
+  let resultado = await serviceCentrales.eliminarCentral(id);
+  res.send(resultado);
+});
 
 module.exports = controladorCentrales;
