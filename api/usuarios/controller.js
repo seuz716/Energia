@@ -11,7 +11,7 @@ const servicioUsuarios = require('./service');
 } 
 */
 controladorUsuarios.get("/iniciarSesion", async function (req,res) {
-  let datosUsuario = req.body;
+  let datosUsuario = req.query;
   let resultado = await servicioUsuarios.iniciarSesion(datosUsuario);
   res.send(resultado);
 });

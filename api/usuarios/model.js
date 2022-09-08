@@ -40,8 +40,8 @@ async function buscarUsuario(nombre) {
 /*function obtenerPorNombre(nombre){
         let db =  basedatos.obtenerConexion();
          return db.collection("usersPlants").find({"nombre" : new RegExp(nombre, "i")}).toArray()
-        .then(function (usuarios){
-            return usuarios;
+        .then(function (usuario){
+            return usuario;
         })
         .catch(function (error){
             console.log(error);
